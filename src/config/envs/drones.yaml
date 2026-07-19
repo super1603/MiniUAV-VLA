@@ -1,0 +1,46 @@
+env: "drones"
+
+common_reward: True
+episode_limit: 120
+
+env_args:
+  map_size: 30
+  drone_num: 4
+  view_range: 6
+  attack_range: 3              # 打击范围；null 时自动取 view_range // 2
+  tree_num: 40
+  human_num: 6
+  episode_limit: 120
+  seed: 1
+  wall_prob: 0.01
+  human_stay_prob: 0.2
+  human_random_move_prob: 0.2
+  allow_drone_through_wall: False
+  allow_drone_through_tree: False
+  drone_start_mode: "random"
+  mission_mode: "eliminate"    # "detect" / "eliminate" / "both"
+  # 方案 A（保守版）：降低被动探测诱惑、强化主动打击、终局 bonus 更显著
+  reward_new_target: 5.0          # 10 -> 5：探测只作为阶段性塑形
+  reward_new_elimination: 20.0    # 15 -> 20：主动消灭是核心目标
+  reward_view_overlap_penalty: -0.02
+  reward_collision_penalty: -0.2
+  reward_step_penalty: -0.01
+  reward_success: 50.0            # 30 -> 50：让完成整个任务的里程碑更显著
+  reward_timeout: 0.0
+  reward_approach_coef: 0.05      # 保持：eliminate 模式下的关键拉力
+  obs_num_closest_humans: 6
+  obs_num_closest_obstacles: 6
+  obs_include_teammates: True
+  obs_only_undiscovered_humans: True
+  obs_obstacles_within_view_only: True
+
+standardise_rewards: False
+
+test_greedy: True
+test_nepisode: 10
+test_interval: 2000
+log_interval: 2000
+runner_log_interval: 500
+learner_log_interval: 500
+progress_log_interval: 500
+t_max: 2050000

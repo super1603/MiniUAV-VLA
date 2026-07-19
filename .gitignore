@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pth
+*.safetensors
+VLA/data/
+VLA/models/
+VLA/eval_runs/
+results/
+logs/
+swanlog/
+out/
+model/
+*.log
+.DS_Store
+
+# local convenience symlink to the MiniMind-V backbone — clone it yourself (see README)
+/minimind-v
+
+# keep demo GIFs in assets/ (do NOT ignore them)
+!assets/
+!assets/*.gif
